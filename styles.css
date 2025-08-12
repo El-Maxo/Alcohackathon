@@ -39,4 +39,43 @@ p { margin: 0 0 10px; }
   h2 { font-size: 1.8rem; }
 }
 
+/* Cats section */
+#cats { padding: 48px 0; }
+#cats .subhead { color: var(--muted); margin: 6px 0 18px; }
+
+.cat-gallery {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.cat-card {
+  margin: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.cat-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.cat-card figcaption {
+  padding: 10px 12px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+@media (min-width: 640px) {
+  .cat-gallery { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 960px) {
+  .cat-gallery { grid-template-columns: repeat(3, 1fr); }
+}
 

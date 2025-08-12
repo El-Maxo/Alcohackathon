@@ -13,7 +13,7 @@ const EVENT_START = "2025-12-31T19:00:00Z";
     root.setAttribute("data-theme", theme);
     try { localStorage.setItem(THEME_KEY, theme); } catch (_) {}
   }
-  function initTheme() {
+  function initTheme("light") {
     try {
       const saved = localStorage.getItem(THEME_KEY);
       if (saved === "light" || saved === "dark") {
