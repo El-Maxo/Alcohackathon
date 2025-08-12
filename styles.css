@@ -1,0 +1,42 @@
+/* Non-critical styles for ALcothon — loaded after above-the-fold */
+
+.section { padding: 56px 0; border-top: 1px solid var(--border); background: transparent; }
+.section:first-of-type { border-top: 0; }
+
+.timeline { margin: 0; padding: 0; list-style: none; }
+.timeline li { display: grid; grid-template-columns: 80px 1fr; align-items: baseline; gap: 12px; padding: 8px 0; border-bottom: 1px dashed var(--border); }
+.timeline li:last-child { border-bottom: 0; }
+.timeline time { color: var(--muted); font-variant-numeric: tabular-nums; }
+
+.rules, .prizes, .callouts, .footer-links { margin: 0; padding: 0; list-style: none; }
+.rules li, .prizes li, .callouts li { padding: 8px 0; }
+.callouts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+.callouts li { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+
+.cta .disclaimer { color: var(--muted); margin-top: 10px; }
+
+.footer { border-top: 1px solid var(--border); padding: 26px 0; background: color-mix(in oklab, var(--surface) 92%, transparent); }
+.footer-grid { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+.footer-links { display: inline-flex; gap: 14px; }
+.small { color: var(--muted); font-size: 0.9rem; }
+
+/* Typography */
+h2 { font-size: 1.5rem; margin: 0 0 12px; }
+p { margin: 0 0 10px; }
+
+/* Buttons refinement */
+.btn { transition: transform 120ms ease, box-shadow 120ms ease; }
+.btn:hover { text-decoration: none; transform: translateY(-1px); }
+.btn:active { transform: translateY(0); }
+
+/* Utilities */
+.visually-hidden { position: absolute!important; height: 1px; width: 1px; overflow: hidden; clip: rect(1px, 1px, 1px, 1px); white-space: nowrap; }
+
+/* Larger screens */
+@media (min-width: 800px) {
+  .hero { padding: 72px 0 48px; }
+  .hero h1 { font-size: 3rem; }
+  h2 { font-size: 1.8rem; }
+}
+
+

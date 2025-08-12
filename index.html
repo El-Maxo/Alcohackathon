@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ALcothon — Drink & Code Online</title>
+    <meta name="description" content="ALcothon is a no‑nonsense online jam: ship code, sip responsibly. Remote hack night with fast builds, demos, and good vibes." />
+    <meta name="color-scheme" content="dark light" />
+
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="ALcothon — Drink & Code Online" />
+    <meta property="og:description" content="A no‑nonsense online jam: ship code, sip responsibly." />
+    <meta property="og:image" content="/assets/logo.svg" />
+    <meta name="twitter:card" content="summary" />
+
+    <!-- Favicon (SVG) -->
+    <link rel="icon" type="image/svg+xml" href="/assets/logo.svg" />
+
+    <!-- Critical CSS: base, header/nav, hero, buttons, accessibility -->
+    <style>
+      :root {
+        --bg: #0b0f14;
+        --surface: #121821;
+        --text: #e6edf3;
+        --muted: #9fb3c8;
+        --accent: #7cf08a;
+        --accent-contrast: #0b1a10;
+        --border: #223043;
+        --focus: #ffcc66;
+        --header-height: 64px;
+        --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
+      }
+      [data-theme="light"] {
+        --bg: #f8fafc;
+        --surface: #ffffff;
+        --text: #0b0f14;
+        --muted: #384452;
+        --accent: #19664b;
+        --accent-contrast: #e6fff3;
+        --border: #d6dee6;
+        --focus: #9b6cff;
+      }
+
+      *, *::before, *::after { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        * { animation: none !important; transition: none !important; }
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+      }
+      a { color: var(--accent); text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      img { max-width: 100%; height: auto; }
+
+      /* Focus visibility */
+      :focus-visible {
+        outline: 2px dashed var(--focus);
+        outline-offset: 3px;
+      }
+
+      /* Skip link */
+      .skip-link {
+        position: absolute;
+        left: 8px;
+        top: -40px;
+        background: var(--surface);
+        color: var(--text);
+        padding: 8px 12px;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        box-shadow: var(--shadow-sm);
+        z-index: 1000;
+      }
+      .skip-link:focus { top: 8px; }
+
+      /* Layout */
+      .container { max-width: 1100px; margin: 0 auto; padding: 0 16px; }
+      main { display: block; }
+      section { scroll-margin-top: var(--header-height); }
+
+      /* Header/Nav */
+      header {
+        position: sticky;
+        top: 0; inset-inline: 0;
+        z-index: 999;
+        background: color-mix(in oklab, var(--surface) 92%, transparent);
+        backdrop-filter: saturate(130%) blur(8px);
+        border-bottom: 1px solid var(--border);
+      }
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: var(--header-height);
+        gap: 16px;
+      }
+      .brand {
+        display: inline-flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: 0.2px;
+      }
+      .brand img { width: 28px; height: 28px; }
+      .nav-links { display: none; gap: 14px; flex-wrap: wrap; }
+      .nav-links a { color: var(--text); opacity: 0.9; padding: 6px 8px; border-radius: 6px; }
+      .nav-links a:hover { background: var(--surface); text-decoration: none; }
+      .right-actions { display: flex; gap: 10px; align-items: center; }
+      #theme-toggle { border: 1px solid var(--border); background: var(--surface); color: var(--text); padding: 8px 10px; border-radius: 8px; cursor: pointer; }
+
+      @media (min-width: 800px) { .nav-links { display: inline-flex; } }
+
+      /* Hero */
+      .hero {
+        padding: 56px 0 36px;
+        background: linear-gradient(180deg, color-mix(in oklab, var(--surface) 94%, transparent), transparent 60%);
+      }
+      .hero h1 { font-size: 2.2rem; margin: 0 0 8px; }
+      .subhead { color: var(--muted); font-size: 1.05rem; margin: 0 0 18px; }
+      .cta-buttons { display: flex; flex-wrap: wrap; gap: 10px; margin: 14px 0 10px; }
+      .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 14px; border-radius: 10px; border: 1px solid var(--border); font-weight: 600; cursor: pointer; text-decoration: none; }
+      .btn-primary { background: var(--accent); color: var(--accent-contrast); border-color: color-mix(in oklab, var(--accent) 60%, black); }
+      .btn-secondary { background: var(--surface); color: var(--text); }
+      .countdown { font-variant-numeric: tabular-nums; color: var(--muted); margin-top: 6px; }
+
+      /* Back-to-top (minimal critical) */
+      #backToTop { position: fixed; right: 16px; bottom: 16px; display: none; padding: 10px 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface); color: var(--text); box-shadow: var(--shadow-sm); }
+      #backToTop.show { display: inline-flex; }
+    </style>
+
+    <!-- Non‑critical CSS -->
+    <link rel="preload" href="/styles.css" as="style" />
+    <link rel="stylesheet" href="/styles.css" />
+
+    <script defer src="/script.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header role="banner">
+      <div class="container nav" aria-label="Primary Navigation">
+        <a class="brand" href="#hero">
+          <img src="/assets/logo.svg" alt="ALcothon logo" />
+          <span>ALcothon</span>
+        </a>
+        <nav class="nav-links" aria-label="Section links">
+          <a href="#about">About</a>
+          <a href="#schedule">Schedule</a>
+          <a href="#rules">Rules</a>
+          <a href="#prizes">Prizes</a>
+          <a href="#callouts">Callouts</a>
+          <a href="#cta">Register</a>
+        </nav>
+        <div class="right-actions">
+          <button id="theme-toggle" type="button" aria-label="Toggle theme">🌓</button>
+        </div>
+      </div>
+    </header>
+
+    <main id="main" tabindex="-1">
+      <section id="hero" class="hero" aria-labelledby="hero-heading">
+        <div class="container">
+          <h1 id="hero-heading">ALcothon</h1>
+          <p class="subhead">A no‑nonsense online jam: ship code, sip responsibly.</p>
+          <div class="cta-buttons" data-cta>
+            <a class="btn btn-primary" href="https://github.com/&lt;ORG&gt;/&lt;REPO&gt;/issues/new?title=Register%3A%20%3CYour%20Name%3E&amp;body=Project%20idea%3A%20...">Register</a>
+            <a class="btn btn-secondary" href="https://discord.gg/your-invite">Join Discord</a>
+          </div>
+          <p id="countdown" class="countdown" aria-live="polite"></p>
+        </div>
+      </section>
+
+      <section id="about" class="section" aria-labelledby="about-heading">
+        <div class="container">
+          <h2 id="about-heading">About</h2>
+          <p>
+            ALcothon is a remote hack night where we build small useful tools fast. Bring your idea, your editor, and a drink. Non‑alcoholic is welcome.
+          </p>
+        </div>
+      </section>
+
+      <section id="schedule" class="section" aria-labelledby="schedule-heading">
+        <div class="container">
+          <h2 id="schedule-heading">Schedule</h2>
+          <ul class="timeline" role="list">
+            <li><time datetime="19:00">19:00</time> Kickoff + team sync</li>
+            <li><time datetime="19:15">19:15</time> Ideation → scope cut</li>
+            <li><time datetime="19:30">19:30</time> Build sprint</li>
+            <li><time datetime="22:00">22:00</time> Demos</li>
+            <li><time datetime="22:30">22:30</time> Wrap</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="rules" class="section" aria-labelledby="rules-heading">
+        <div class="container">
+          <h2 id="rules-heading">Rules</h2>
+          <ul class="rules" role="list">
+            <li>Ship a working link by demo time</li>
+            <li>Small scope / clear readme / live link</li>
+            <li>No harassment / spam / NSFW</li>
+            <li>18+ / legal drinking age; drink responsibly</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="prizes" class="section" aria-labelledby="prizes-heading">
+        <div class="container">
+          <h2 id="prizes-heading">Prizes</h2>
+          <ul class="prizes" role="list">
+            <li>Best Utility</li>
+            <li>Best UX</li>
+            <li>Funniest Tool</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="callouts" class="section" aria-labelledby="callouts-heading">
+        <div class="container">
+          <h2 id="callouts-heading">Callouts</h2>
+          <ul class="callouts" role="list">
+            <li>Zero setup</li>
+            <li>Open source by default</li>
+            <li>Solo or team up to 3</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="cta" class="section cta" aria-labelledby="cta-heading">
+        <div class="container">
+          <h2 id="cta-heading">Ready?</h2>
+          <div class="cta-buttons" data-cta>
+            <a class="btn btn-primary" href="https://github.com/&lt;ORG&gt;/&lt;REPO&gt;/issues/new?title=Register%3A%20%3CYour%20Name%3E&amp;body=Project%20idea%3A%20...">Register</a>
+            <a class="btn btn-secondary" href="https://discord.gg/your-invite">Join Discord</a>
+          </div>
+          <p class="disclaimer">This event promotes responsible consumption. Water and non‑alcoholic options encouraged.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+      <div class="container footer-grid">
+        <p class="small">© <span id="year"></span> ALcothon — Drink &amp; Code Online</p>
+        <nav aria-label="Footer">
+          <ul class="footer-links" role="list">
+            <li><a href="#rules">Code of Conduct</a></li>
+            <li><a href="mailto:hello@example.com">Contact</a></li>
+            <li><a href="https://github.com/ORG/REPO">GitHub Repo</a></li>
+          </ul>
+        </nav>
+      </div>
+    </footer>
+
+    <button id="backToTop" aria-label="Back to top">↑</button>
+  </body>
+  </html>
+
+
